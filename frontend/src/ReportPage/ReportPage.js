@@ -1,10 +1,9 @@
-import React    from "react";
-import template from "./ReportPage.jsx";
-
-class ReportPage extends React.Component {
-  render() {
-    return template.call(this);
+function ReportPage() {
+    return (
+      <div >
+          ReportPage
+      </div>
+    );
   }
-}
-
-export default ReportPage;
+  
+  export default ReportPage;

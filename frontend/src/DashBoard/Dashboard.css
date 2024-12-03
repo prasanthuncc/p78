@@ -1,0 +1,214 @@
+/* Body Styling */
+/* Restoring Placards and Dashboard Styles */
+body {
+    height: 100vh;
+    margin: 0;
+    color: #000;
+    /* Keep the gradient fixed while scrolling */
+    background: linear-gradient(to bottom right, rgba(150, 100, 200, 0.4), teal) fixed;
+    background-size: cover; /* Ensure the background covers the entire viewport */
+}
+
+/* Dashboard Styling */
+.dashboard {
+    text-align: center;
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.dashboard h1 {
+    font-size: 6rem; /* Adjust this value as needed */
+}
+
+/* Specific Styling for Tech Stack Placard */
+
+/* Placards Container Styling */
+.placards {
+    display: flex;
+    flex-wrap: wrap; /* Allow the items to wrap onto new lines */
+    justify-content: space-around;
+    margin-bottom: 30px;
+    gap: 20px; /* Adjusts spacing between placards */
+}
+
+/* Individual Placard Styling */
+.placard {
+    background-color: transparent;
+    padding: 20px;
+    width: 30%;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+    z-index: 2;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.link-button {
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 255, 0.2); /* Transparent blue */
+    color: blue; /* Text color to blue */
+    text-decoration: none;
+    border-radius: 30px;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    border: 2px solid blue; /* Optional: Add blue border for visibility */
+}
+
+.link-button:hover {
+    background-color: rgba(0, 0, 255, 0.4); /* Darker transparent blue on hover */
+    color: white; /* Change text color to white on hover */
+}
+
+/* For the last two placards (4th and 5th), set width to 48% to fit side by side */
+.placard:nth-child(n+4) {
+    width: 48%; /* Adjust to fit two placards on the same line */
+}
+
+/* Hover Effect for Placard */
+.placard:hover {
+    animation: rainbow-border 2s infinite linear;
+    transform: scale(1.05);
+}
+
+/* Optional: to fix the issue if there's still unwanted space between items */
+@media (max-width: 768px) {
+    .placard {
+        width: 100%; /* Stack all placards vertically on small screens */
+    }
+}
+
+/* Rainbow Border Animation */
+@keyframes rainbow-border {
+    0% {
+        box-shadow: 0 0 3px 1px rgba(255, 0, 0, 0.4),
+        0 0 3px 2px rgba(255, 165, 0, 0.4),
+        0 0 3px 3px rgba(255, 255, 0, 0.4),
+        0 0 3px 4px rgba(0, 128, 0, 0.4),
+        0 0 3px 5px rgba(0, 0, 255, 0.4),
+        0 0 3px 6px rgba(75, 0, 130, 0.4),
+        0 0 3px 7px rgba(238, 130, 238, 0.4);
+    }
+    14% {
+        box-shadow: 0 0 3px 1px rgba(255, 165, 0, 0.4),
+        0 0 3px 2px rgba(255, 255, 0, 0.4),
+        0 0 3px 3px rgba(0, 128, 0, 0.4),
+        0 0 3px 4px rgba(0, 0, 255, 0.4),
+        0 0 3px 5px rgba(75, 0, 130, 0.4),
+        0 0 3px 6px rgba(238, 130, 238, 0.4),
+        0 0 3px 7px rgba(255, 0, 0, 0.4);
+    }
+    28% {
+        box-shadow: 0 0 3px 1px rgba(255, 255, 0, 0.4),
+        0 0 3px 2px rgba(0, 128, 0, 0.4),
+        0 0 3px 3px rgba(0, 0, 255, 0.4),
+        0 0 3px 4px rgba(75, 0, 130, 0.4),
+        0 0 3px 5px rgba(238, 130, 238, 0.4),
+        0 0 3px 6px rgba(255, 0, 0, 0.4),
+        0 0 3px 7px rgba(255, 165, 0, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 3px 1px rgba(0, 255, 255, 0.4),
+        0 0 3px 2px rgba(255, 255, 255, 0.4),
+        0 0 3px 3px rgba(128, 0, 128, 0.4),
+        0 0 3px 4px rgba(255, 20, 147, 0.4),
+        0 0 3px 5px rgba(255, 69, 0, 0.4),
+        0 0 3px 6px rgba(34, 139, 34, 0.4),
+        0 0 3px 7px rgba(255, 105, 180, 0.4);
+    }
+    75% {
+        box-shadow: 0 0 3px 1px rgba(255, 105, 180, 0.4),
+        0 0 3px 2px rgba(34, 139, 34, 0.4),
+        0 0 3px 3px rgba(255, 69, 0, 0.4),
+        0 0 3px 4px rgba(255, 20, 147, 0.4),
+        0 0 3px 5px rgba(128, 0, 128, 0.4),
+        0 0 3px 6px rgba(255, 255, 255, 0.4),
+        0 0 3px 7px rgba(0, 255, 255, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 3px 1px rgba(255, 0, 0, 0.4),
+        0 0 3px 2px rgba(255, 165, 0, 0.4),
+        0 0 3px 3px rgba(255, 255, 0, 0.4),
+        0 0 3px 4px rgba(0, 128, 0, 0.4),
+        0 0 3px 5px rgba(0, 0, 255, 0.4),
+        0 0 3px 6px rgba(75, 0, 130, 0.4),
+        0 0 3px 7px rgba(238, 130, 238, 0.4);
+    }
+}
+
+/* Placard Content Styling */
+.placard p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000;
+}
+
+/* Quote Section Styling */
+.quote {
+    font-style: italic;
+    color: #000;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/* Quote Image Styling */
+.quote-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+/* Tech Stack Section Styling */
+/* Tech Stack Section Styling */
+.tech-stack-alt {
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+    box-sizing: border-box;
+    z-index: 3;
+    width: 80%;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+/* Text inside tech stack */
+.tech-stack-alt h3 {
+    font-size: 2rem;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.tech-stack-alt p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000;
+}
+
+/* Hover Effect for Tech Stack */
+.tech-stack-alt:hover {
+    animation: rainbow-border 2s infinite linear;
+    transform: scale(1.05);
+}
+
+/* Responsive Design for Tech Stack */
+@media (max-width: 768px) {
+    .tech-stack-alt {
+        width: 90%;
+        margin-top: 20px;
+    }
+}

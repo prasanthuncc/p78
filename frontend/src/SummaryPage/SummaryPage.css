@@ -1,0 +1,90 @@
+/* Summary Page Container */
+.summary-container {
+    display: flex;
+    flex-direction: column; /* Stack the placards vertically */
+    justify-content: center; /* Center the placards vertically */
+    align-items: center; /* Center the placards horizontally */
+    min-height: 100vh;
+    padding-top: 50px; /* Add space from the top */
+}
+
+/* Individual Placard Styling */
+.placard {
+    background-color: transparent;
+    padding: 50px; /* Increase padding for more space inside */
+    width: 75%; /* Increase width to make it wider */
+    max-width: 1200px; /* Optional: Limit the maximum width */
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2); /* Increased shadow for more emphasis */
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+    z-index: 2;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 30px; /* Add space below each placard */
+    align-items: center; /* Ensure contents inside placard are centered */
+}
+
+/* Second Placard with reduced size */
+.placard.second-placard {
+    width: 40%; /* Reduced by 60% */
+    max-width: 600px; /* Optional: Set a max width for better control */
+}
+
+
+/* Pie chart container */
+.pie-chart-container {
+    display: flex;
+    justify-content: center; /* Center the pie chart horizontally */
+    align-items: center; /* Center the pie chart vertically */
+    width: 100%; /* Ensure it takes up the full width of the placard */
+    height: 400px; /* Set a specific height for the pie chart container */
+}
+
+/* Heading Styling */
+.placard h2 {
+    font-size: 2.5rem; /* Increase font size */
+    margin-bottom: 20px;
+}
+
+/* Paragraph Styling */
+.placard p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #000;
+    text-align: justify; /* Align text neatly */
+    margin-bottom: 20px; /* Add space below paragraphs */
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Button Styling */
+.link-button {
+    padding: 12px 30px;
+    background-color: rgba(0, 0, 255, 0.2); /* Transparent blue */
+    color: blue;
+    text-decoration: none;
+    border-radius: 30px;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    border: 2px solid blue;
+}
+
+.link-button:hover {
+    background-color: rgba(0, 0, 255, 0.4);
+    color: white;
+}
+
+/* Optional: For smaller screens */
+@media (max-width: 768px) {
+    .placard {
+        width: 90%; /* Adjust placard width for smaller screens */
+    }
+}

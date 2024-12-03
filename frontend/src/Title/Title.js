@@ -1,10 +1,9 @@
-import React    from "react";
-import template from "./Title.jsx";
-
-class Title extends React.Component {
-  render() {
-    return template.call(this);
+function Title() {
+    return (
+      <div >
+          Title
+      </div>
+    );
   }
-}
-
-export default Title;
+  
+  export default Title;
