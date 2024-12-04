@@ -34,7 +34,7 @@ body {
 }
 
 /* Individual Placard Styling */
-.placard {
+.dashboard-placard {
     background-color: transparent;
     padding: 20px;
     width: 30%;
@@ -72,19 +72,19 @@ body {
 }
 
 /* For the last two placards (4th and 5th), set width to 48% to fit side by side */
-.placard:nth-child(n+4) {
+.dashboard-placard:nth-child(n+4) {
     width: 48%; /* Adjust to fit two placards on the same line */
 }
 
 /* Hover Effect for Placard */
-.placard:hover {
+.dashboard-placard:hover {
     animation: rainbow-border 2s infinite linear;
     transform: scale(1.05);
 }
 
 /* Optional: to fix the issue if there's still unwanted space between items */
 @media (max-width: 768px) {
-    .placard {
+    .dashboard-placard {
         width: 100%; /* Stack all placards vertically on small screens */
     }
 }
@@ -148,7 +148,7 @@ body {
 }
 
 /* Placard Content Styling */
-.placard p {
+.dashboard-placard p {
     font-size: 16px;
     line-height: 1.5;
     color: #000;

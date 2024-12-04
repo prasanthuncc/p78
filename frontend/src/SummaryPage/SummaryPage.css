@@ -9,7 +9,7 @@
 }
 
 /* Individual Placard Styling */
-.placard {
+.summary-placard {
     background-color: transparent;
     padding: 50px; /* Increase padding for more space inside */
     width: 75%; /* Increase width to make it wider */
@@ -27,7 +27,7 @@
 }
 
 /* Second Placard with reduced size */
-.placard.second-placard {
+.summary-placard.second-placard {
     width: 40%; /* Reduced by 60% */
     max-width: 600px; /* Optional: Set a max width for better control */
 }
@@ -43,13 +43,13 @@
 }
 
 /* Heading Styling */
-.placard h2 {
+.summary-placard h2 {
     font-size: 2.5rem; /* Increase font size */
     margin-bottom: 20px;
 }
 
 /* Paragraph Styling */
-.placard p {
+.summary-placard p {
     font-size: 1.2rem;
     line-height: 1.8;
     color: #000;
@@ -84,7 +84,7 @@
 
 /* Optional: For smaller screens */
 @media (max-width: 768px) {
-    .placard {
+    .summary-placard {
         width: 90%; /* Adjust placard width for smaller screens */
     }
 }

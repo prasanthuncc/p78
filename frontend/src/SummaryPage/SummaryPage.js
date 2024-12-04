@@ -30,13 +30,13 @@ const data = {
 
 const SummaryPage = () => {
     return (<div className="summary-container">
-        <div className="placard second-placard">
+        <div className="summary-placard second-placard">
             <h2>AI Tool Usage Breakdown</h2>
             <div className="pie-chart-container">
                 <PieChart data={data}/>
             </div>
         </div>
-        <div className="placard">
+        <div className="summary-placard">
             <h2>AI Usage Insights</h2>
             <p>
                 A recent survey by the Digital Education Council found that 86% of students globally use AI in their

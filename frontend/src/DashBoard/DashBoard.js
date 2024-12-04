@@ -29,7 +29,7 @@ const Dashboard = () => {
                 {/* Dynamically rendered placards */}
                 {placards.length > 0 ? (
                     placards.map((placard, index) => (
-                        <div key={index} className="placard">
+                        <div key={index} className="dashboard-placard">
                             <p>{placard}</p>
                             {/* Display link only for the last placard */}
                             {index === placards.length - 1 && (
