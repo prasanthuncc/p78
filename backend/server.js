@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const { expressjwt: exjwt } = require('express-jwt');
+const {expressjwt: exjwt} = require('express-jwt');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -17,34 +17,34 @@ const jwtMW = exjwt({
 
 const uri = "mongodb+srv://user1:Hermosa444@test.bixktb6.mongodb.net/nbad?retryWrites=true&w=majority";
 
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => console.log('MongoDB connected'))
     .catch((err) => console.log('Error connecting to MongoDB:', err));
 
 const placardSchema = new mongoose.Schema({
-    placards: { type: [String], required: true },
-    techStack: { type: String, required: true },
-    quote: { type: String, required: true },
+    placards: {type: [String], required: true},
+    techStack: {type: String, required: true},
+    quote: {type: String, required: true},
 });
 
 const chartsSchema = new mongoose.Schema({
     low: {
-        labels: { type: [String], required: true },
-        data: { type: [Number], required: true },
-        backgroundColor: { type: [String], required: true },
-        hoverBackgroundColor: { type: [String], required: true },
+        labels: {type: [String], required: true},
+        data: {type: [Number], required: true},
+        backgroundColor: {type: [String], required: true},
+        hoverBackgroundColor: {type: [String], required: true},
     },
     high: {
-        labels: { type: [String], required: true },
-        data: { type: [Number], required: true },
-        backgroundColor: { type: [String], required: true },
-        hoverBackgroundColor: { type: [String], required: true },
+        labels: {type: [String], required: true},
+        data: {type: [Number], required: true},
+        backgroundColor: {type: [String], required: true},
+        hoverBackgroundColor: {type: [String], required: true},
     },
     average: {
-        labels: { type: [String], required: true },
-        data: { type: [Number], required: true },
-        backgroundColor: { type: [String], required: true },
-        hoverBackgroundColor: { type: [String], required: true },
+        labels: {type: [String], required: true},
+        data: {type: [Number], required: true},
+        backgroundColor: {type: [String], required: true},
+        hoverBackgroundColor: {type: [String], required: true},
     },
 });
 
@@ -56,7 +56,7 @@ app.get('/api/placards', async (req, res) => {
         const placards = await Placard.find();
         res.json(placards);
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({message: err.message});
     }
 });
 
@@ -65,36 +65,36 @@ app.get('/api/charts', async (req, res) => {
         const charts = await ChartData.find();
         res.json(charts);
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({message: err.message});
     }
 });
 
 const prasanth = "prasanth";
-let users = [{ id: 1, username: prasanth, password: prasanth }];
+let users = [{id: 1, username: prasanth, password: prasanth}];
 
 app.post('/api/login', (req, res) => {
-    const { username, password } = req.body;
+    const {username, password} = req.body;
     const user = users.find(user => user.username === username && user.password === password);
 
     if (user) {
-        const token = jwt.sign({ id: user.id, username: user.username }, mySecretKey, { expiresIn: '1h' });
-        res.json({ success: true, token });
+        const token = jwt.sign({id: user.id, username: user.username}, mySecretKey, {expiresIn: '1h'});
+        res.json({success: true, token});
     } else {
-        res.status(401).json({ success: false, token: null, err: "Invalid username or password" });
+        res.status(401).json({success: false, token: null, err: "Invalid username or password"});
     }
 });
 
 app.get('/api/dashboard', jwtMW, (req, res) => {
-    res.json({ success: true, myContent: 'Secret Content only for logged-in users!' });
+    res.json({success: true, myContent: 'Secret Content only for logged-in users!'});
 });
 
 app.get('/api/summary', jwtMW, (req, res) => {
-    res.json({ success: true, myContent: 'Summary data accessible to authenticated users only!' });
+    res.json({success: true, myContent: 'Summary data accessible to authenticated users only!'});
 });
 
 app.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {
-        res.status(401).json({ success: false, err: "Invalid or expired token" });
+        res.status(401).json({success: false, err: "Invalid or expired token"});
     } else {
         next(err);
     }
