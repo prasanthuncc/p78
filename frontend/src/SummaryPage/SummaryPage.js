@@ -18,7 +18,7 @@ const SummaryPage = () => {
                     return;
                 }
 
-                const response = await axios.get("http://localhost:3000/api/charts", {
+                const response = await axios.get("http://18.227.140.245:3000/api/charts", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -46,7 +46,7 @@ const SummaryPage = () => {
         };
 
         fetchData();
-    }, [navigate]); // Add navigate as a dependency to ensure it's up-to-date
+    }, [navigate]);
 
     if (!averageIntensityData) {
         return <div>Loading...</div>;

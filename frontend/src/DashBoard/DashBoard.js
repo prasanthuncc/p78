@@ -1,24 +1,51 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import the hook
 import './Dashboard.css';
 
 const Dashboard = () => {
-    const [data, setData] = useState({placards: [], quote: '', techStack: ''});
+    const [data, setData] = useState({ placards: [], quote: '', techStack: '' });
+    const navigate = useNavigate(); // Initialize the navigate hook
 
     useEffect(() => {
-        // Fetch data from the backend API (using port 3001)
-        axios.get('http://localhost:3000/api/placards')
-            .then(response => {
-                // Assuming response.data is an array with the desired object
-                const fetchedData = response.data[0] || {placards: [], quote: '', techStack: ''};
-                setData(fetchedData);
-            })
-            .catch(error => {
-                console.error('Error fetching dashboard data:', error);
-            });
-    }, []);
+        const fetchData = async () => {
+            try {
+                // Retrieve token from localStorage
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    console.error('No token found. Redirecting to login...');
+                    navigate('/login'); // Redirect to login page
+                    return;
+                }
 
-    const {placards, quote, techStack} = data;
+                // Make API request with authorization header
+                const response = await axios.get('http://18.227.140.245:3000/api/placards', {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                // Assuming response.data contains the data we need
+                const fetchedData = response.data[0] || { placards: [], quote: '', techStack: '' };
+                setData(fetchedData);
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
+                    console.error('Token expired or unauthorized. Redirecting to login...');
+                    navigate('/login'); // Redirect to login page if token is invalid
+                } else {
+                    console.error('Failed to fetch data', error);
+                }
+            }
+        };
+
+        fetchData();
+    }, [navigate]);
+
+    const { placards, quote, techStack } = data;
+
+    if (!placards.length) {
+        return <div>Loading...</div>; // Show loading state if data is not fetched
+    }
 
     return (
         <div className="dashboard">
@@ -55,7 +82,7 @@ const Dashboard = () => {
                 {/* Dynamically rendered quote */}
                 {quote && (
                     <>
-                        <img src="/images/Sam-Altman-OpenAI.jpg" alt="Sam Altman" className="quote-image"/>
+                        <img src="/images/Sam-Altman-OpenAI.jpg" alt="Sam Altman" className="quote-image" />
                         <blockquote>{quote}</blockquote>
                     </>
                 )}
