@@ -79,7 +79,7 @@ const SummaryPage = () => {
                     such as Silicon Valley into the Midwest and Southern regions, which have more of a manufacturing
                     focus.
 
-                    The intensity of AI adoption is very uneven across industries. Manufacturing leads the way with
+                    The intensity of AI adoption is very uneven across industries.The average value of intensity in manufacturing leads the way with
                     8.8%,
                     followed by health care at 8.0%. The information sector comes in with 7.9%, while professional
                     services
