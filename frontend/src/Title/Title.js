@@ -1,9 +1,9 @@
 function Title() {
     return (
-      <div >
-          Title
-      </div>
+        <div>
+            P78
+        </div>
     );
-  }
-  
-  export default Title;
+}
+
+export default Title;

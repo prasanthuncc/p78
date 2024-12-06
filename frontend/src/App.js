@@ -38,8 +38,7 @@ function App() {
         }
     }, [logout, navigate]);
 
-    return (
-        <div className="App">
+    return (<div className="App">
             <Menu className="navbar"/>
             <div className="background">
                 <div className="mainContainer">
@@ -47,14 +46,14 @@ function App() {
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/" element={<AuthRoutes/>}>
                             <Route path="/dashboard" element={<Dashboard/>}/>
+                            <Route path="/" element={<Dashboard/>}/>
                             <Route path="/summary" element={<SummaryPage/>}/>
                             <Route path="/report" element={<ReportPage/>}/>
                         </Route>
                     </Routes>
                 </div>
             </div>
-        </div>
-    );
+        </div>);
 }
 
 export default App;
