@@ -1,0 +1,116 @@
+/* report Page Container */
+.report-container {
+    display: flex;
+    flex-direction: column; /* Stack the placards vertically */
+    justify-content: center; /* Center the placards vertically */
+    align-items: center; /* Center the placards horizontally */
+    min-height: 100vh;
+    padding-top: 50px; /* Add space from the top */
+}
+
+/* Individual Placard Styling */
+.report-placard {
+    background-color: transparent;
+    padding: 50px; /* Increase padding for more space inside */
+    width: 80%; /* Increase width to make it wider */
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2); /* Increased shadow for more emphasis */
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+    z-index: 2;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+.report-chart-placard-parent{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 25px;
+}
+
+.report-chart-placard {
+    background-color: transparent;
+    padding: 50px; /* Increase padding for more space inside */
+    width: 40%; /* Increase width to make it wider */
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2); /* Increased shadow for more emphasis */
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+    z-index: 2;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+/* Pie chart container for side-by-side charts */
+.pie-charts-container {
+    display: flex;
+    justify-content: space-around; /* Distribute the charts evenly */
+    width: 100%;
+    gap: 30px; /* Add space between the charts */
+}
+
+/* Pie chart container */
+.pie-chart-container {
+    display: flex;
+    justify-content: center; /* Center the pie chart horizontally */
+    align-items: center; /* Center the pie chart vertically */
+    width: 100%; /* Adjust width to fit side by side */
+    height: 400px; /* Set a specific height for the pie chart container */
+}
+
+/* Heading Styling */
+.report-placard h2 {
+    font-size: 2.5rem; /* Increase font size */
+    margin-bottom: 20px;
+}
+
+/* Paragraph Styling */
+.report-placard p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #000;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+/* Button Styling */
+.link-button {
+    padding: 12px 30px;
+    background-color: rgba(0, 0, 255, 0.2);
+    color: blue;
+    text-decoration: none;
+    border-radius: 30px;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    border: 2px solid blue;
+}
+
+.link-button:hover {
+    background-color: rgba(0, 0, 255, 0.4);
+    color: white;
+}
+
+/* Optional: For smaller screens */
+@media (max-width: 768px) {
+    .report-placard {
+        width: 90%;
+    }
+
+    /* Stack pie charts on smaller screens */
+    .pie-charts-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .pie-chart-container {
+        width: 100%; /* Take full width on smaller screens */
+        height: 300px; /* Adjust height for better fit */
+    }
+}

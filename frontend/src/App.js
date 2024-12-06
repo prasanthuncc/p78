@@ -1,53 +1,55 @@
-import {useEffect, useState} from 'react';
-import './App.css';
-import {Route, Routes, useNavigate} from 'react-router-dom';
+import React, { useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import "./App.css";
 
-import Menu from './Menu/Menu';
-import Dashboard from './DashBoard/DashBoard';
-import SummaryPage from './SummaryPage/SummaryPage';
-import ReportPage from './ReportPage/ReportPage';
-import Login from './Login/Login';
+import Menu from "./Menu/Menu";
+import Dashboard from "./DashBoard/DashBoard";
+import SummaryPage from "./SummaryPage/SummaryPage";
+import ReportPage from "./ReportPage/ReportPage";
+import Login from "./Login/Login";
+import { useAuth } from "./context/AuthContext";
+import AuthRoutes from "./Routes/AuthRoutes";
 
 function App() {
+    const { logout } = useAuth();
     const navigate = useNavigate();
-    const [isTokenAuthenticate, setIsTokenAuthenticate] = useState(true);
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        console.log(token);
-
+        const token = localStorage.getItem("token");
         if (!token) {
-            setIsTokenAuthenticate(false);
+            logout();
+            navigate("/login", { replace: true });
             return;
         }
 
-        const decodedToken = JSON.parse(atob(token.split('.')[1]));
-        console.log(decodedToken);
+        try {
+            const decodedToken = JSON.parse(atob(token.split(".")[1]));
+            const currentTime = Math.floor(Date.now() / 1000);
+            const isTokenExpired = decodedToken.exp < currentTime;
 
-        const currentTime = Math.floor(Date.now() / 1000);
-        const isTokenExpired = decodedToken.exp < currentTime;
-        console.log(isTokenExpired);
-
-        if (isTokenExpired) {
-            localStorage.removeItem('token');
-            setIsTokenAuthenticate(false);
-            navigate('/login'); // Redirect to login page if the token has expired
-        } else {
-            setIsTokenAuthenticate(true);
+            if (isTokenExpired) {
+                logout();
+                navigate("/login", { replace: true });
+            }
+        } catch (error) {
+            console.error("Invalid token:", error);
+            logout();
+            navigate("/login", { replace: true });
         }
-    }, [navigate]);
+    }, [logout, navigate]); // Include `logout` in the dependency array
 
     return (
         <div className="App">
-            <Menu className="navbar" isTokenAuthenticate={isTokenAuthenticate}
-                  setIsTokenAuthenticate={setIsTokenAuthenticate}/>
-            <div className='background'>
-                <div className='mainContainer'>
+            <Menu className="navbar" />
+            <div className="background">
+                <div className="mainContainer">
                     <Routes>
-                        <Route path='/' element={isTokenAuthenticate ? <Dashboard/> : <Login/>}/>
-                        <Route path='/summary' element={isTokenAuthenticate ? <SummaryPage/> : <Login/>}/>
-                        <Route path='/report' element={isTokenAuthenticate ? <ReportPage/> : <Login/>}/>
-                        <Route path='/login' element={<Login/>}/>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/" element={<AuthRoutes />}>
+                            <Route path="/dashboard" element={<Dashboard />} />
+                            <Route path="/summary" element={<SummaryPage />} />
+                            <Route path="/report" element={<ReportPage />} />
+                        </Route>
                     </Routes>
                 </div>
             </div>

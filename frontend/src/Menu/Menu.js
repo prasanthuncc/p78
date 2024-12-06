@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './Menu.css';
+import {useAuth} from '../context/AuthContext';
 
-const Menu = ({ isTokenAuthenticate, setIsTokenAuthenticate }) => {
+const Menu = () => {
+
+    const {isAuthenticated, logout} = useAuth();
     const handleLogout = () => {
-        localStorage.removeItem('token');
-        setIsTokenAuthenticate(false); // Update state in parent to hide logout button
+        logout();
     };
 
     return (
@@ -14,7 +16,7 @@ const Menu = ({ isTokenAuthenticate, setIsTokenAuthenticate }) => {
                 <a href="/" className='logo'>Gen AI 2024</a>
                 <ul>
                     <li>
-                        <Link to="/">Dashboard</Link>
+                        <Link to="/dashboard">Dashboard</Link>
                     </li>
                     <li>
                         <Link to="/summary">Summary</Link>
@@ -22,8 +24,7 @@ const Menu = ({ isTokenAuthenticate, setIsTokenAuthenticate }) => {
                     <li>
                         <Link to="/report">Report</Link>
                     </li>
-                    {/* Only show logout button if authenticated */}
-                    {isTokenAuthenticate && (
+                    {isAuthenticated && (
                         <li>
                             <button onClick={handleLogout}>Logout</button>
                         </li>

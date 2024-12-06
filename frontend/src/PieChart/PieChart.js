@@ -13,7 +13,7 @@ const PieChart = ({data}) => {
             {
                 data: data.data,
                 backgroundColor: data.backgroundColor,
-                borderColor: data.backgroundColor.map(color => color), // Border same as background
+                borderColor: data.backgroundColor.map(color => color),
                 borderWidth: 1,
             },
         ],
