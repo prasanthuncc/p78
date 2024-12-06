@@ -1,23 +1,23 @@
-import { useState } from "react";
+import {useState} from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import {useNavigate} from "react-router-dom";
+import {useAuth} from "../context/AuthContext";
 import "./Login.css";
 
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const { login } = useAuth();
+    const {login} = useAuth();
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://18.227.140.245:3000/api/login", { username, password });
+            const response = await axios.post("http://18.227.140.245:3000/api/login", {username, password});
 
             if (response.data.success) {
                 login(response.data.token);
-                navigate("/dashboard", { replace: true });
+                navigate("/dashboard", {replace: true});
             } else {
                 alert("Authentication failed. Please check your username and password.");
             }

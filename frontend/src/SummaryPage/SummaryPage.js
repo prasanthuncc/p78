@@ -1,12 +1,12 @@
 import './SummaryPage.css';
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import {useNavigate} from "react-router-dom"; // Import the hook
+import {useNavigate} from "react-router-dom";
 import PieChart from "../PieChart/PieChart";
 
 const SummaryPage = () => {
     const [averageIntensityData, setAverageIntensityData] = useState(null);
-    const navigate = useNavigate(); // Initialize the navigate hook
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -14,7 +14,7 @@ const SummaryPage = () => {
                 const token = localStorage.getItem("token");
                 if (!token) {
                     console.error("No token found. Redirecting to login...");
-                    navigate("/login"); // Redirect to login page
+                    navigate("/login");
                     return;
                 }
 
@@ -38,7 +38,7 @@ const SummaryPage = () => {
             } catch (error) {
                 if (error.response && error.response.status === 401) {
                     console.error("Token expired or unauthorized. Redirecting to login...");
-                    navigate("/login"); // Redirect to login page if token is invalid
+                    navigate("/login");
                 } else {
                     console.error("Failed to fetch data", error);
                 }
@@ -79,7 +79,8 @@ const SummaryPage = () => {
                     such as Silicon Valley into the Midwest and Southern regions, which have more of a manufacturing
                     focus.
 
-                    The intensity of AI adoption is very uneven across industries.The average value of intensity in manufacturing leads the way with
+                    The intensity of AI adoption is very uneven across industries.The average value of intensity in
+                    manufacturing leads the way with
                     8.8%,
                     followed by health care at 8.0%. The information sector comes in with 7.9%, while professional
                     services

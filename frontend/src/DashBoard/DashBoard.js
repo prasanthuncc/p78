@@ -1,32 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import the hook
+import {useNavigate} from 'react-router-dom';
 import './Dashboard.css';
 
 const Dashboard = () => {
-    const [data, setData] = useState({ placards: [], quote: '', techStack: '' });
-    const navigate = useNavigate(); // Initialize the navigate hook
+    const [data, setData] = useState({placards: [], quote: '', techStack: ''});
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Retrieve token from localStorage
                 const token = localStorage.getItem('token');
                 if (!token) {
                     console.error('No token found. Redirecting to login...');
-                    navigate('/login'); // Redirect to login page
+                    navigate('/login');
                     return;
                 }
 
-                // Make API request with authorization header
                 const response = await axios.get('http://18.227.140.245:3000/api/placards', {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
 
-                // Assuming response.data contains the data we need
-                const fetchedData = response.data[0] || { placards: [], quote: '', techStack: '' };
+                const fetchedData = response.data[0] || {placards: [], quote: '', techStack: ''};
                 setData(fetchedData);
             } catch (error) {
                 if (error.response && error.response.status === 401) {
@@ -41,7 +38,7 @@ const Dashboard = () => {
         fetchData();
     }, [navigate]);
 
-    const { placards, quote, techStack } = data;
+    const {placards, quote, techStack} = data;
 
     if (!placards.length) {
         return <div>Loading...</div>; // Show loading state if data is not fetched
@@ -79,16 +76,14 @@ const Dashboard = () => {
             </div>
 
             <div className="quote">
-                {/* Dynamically rendered quote */}
                 {quote && (
                     <>
-                        <img src="/images/Sam-Altman-OpenAI.jpg" alt="Sam Altman" className="quote-image" />
+                        <img src="/images/Sam-Altman-OpenAI.jpg" alt="Sam Altman" className="quote-image"/>
                         <blockquote>{quote}</blockquote>
                     </>
                 )}
             </div>
             <div className="tech-stack-alt">
-                {/* Dynamically rendered tech stack */}
                 {techStack && (
                     <>
                         <h3>Tech Stack</h3>

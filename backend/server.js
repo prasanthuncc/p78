@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 
-const mySecretKey = "My Super Secret Key"; // Store in environment variables in production
+const mySecretKey = "My Super Secret Key";
 const jwtMW = exjwt({
     secret: mySecretKey,
     algorithms: ['HS256'],

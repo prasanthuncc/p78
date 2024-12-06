@@ -1,26 +1,24 @@
 import './ReportPage.css';
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios'; // Import axios
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
-import PieChart from '../PieChart/PieChart'; // Import the PieChart component
+import {useNavigate} from 'react-router-dom';
+import PieChart from '../PieChart/PieChart';
 
 const ReportPage = () => {
     const [highIntensityData, setHighIntensityData] = useState(null);
     const [lowIntensityData, setLowIntensityData] = useState(null);
-    const navigate = useNavigate(); // Initialize navigate hook
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Retrieve token from localStorage
                 const token = localStorage.getItem('token');
                 if (!token) {
                     console.error('No token found. Redirecting to login...');
-                    navigate('/login'); // Redirect to login if no token
+                    navigate('/login');
                     return;
                 }
 
-                // Make API request with authorization header
                 const response = await axios.get('http://18.227.140.245:3000/api/charts', {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -29,7 +27,7 @@ const ReportPage = () => {
 
                 console.log(response.data);
 
-                const { high, low } = response.data[0];
+                const {high, low} = response.data[0];
 
                 if (high && low) {
                     setHighIntensityData({
@@ -50,7 +48,7 @@ const ReportPage = () => {
             } catch (error) {
                 if (error.response && error.response.status === 401) {
                     console.error('Token expired or unauthorized. Redirecting to login...');
-                    navigate('/login'); // Redirect to login if token is invalid
+                    navigate('/login');
                 } else {
                     console.error('Failed to fetch data', error);
                 }
@@ -60,7 +58,7 @@ const ReportPage = () => {
     }, [navigate]);
 
     if (!highIntensityData || !lowIntensityData) {
-        return <div>Loading...</div>; // Show loading state if data is not fetched
+        return <div>Loading...</div>;
     }
 
     return (
@@ -102,13 +100,13 @@ const ReportPage = () => {
                         <div className="report-chart-placard">
                             <h4>High Intensity AI Usage in various sectors</h4>
                             <div className="pie-chart-container">
-                                <PieChart data={highIntensityData} />
+                                <PieChart data={highIntensityData}/>
                             </div>
                         </div>
                         <div className="report-chart-placard">
                             <h4>Low Intensity AI Usage in various sectors</h4>
                             <div className="pie-chart-container">
-                                <PieChart data={lowIntensityData} />
+                                <PieChart data={lowIntensityData}/>
                             </div>
                         </div>
                     </div>
