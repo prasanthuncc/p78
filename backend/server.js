@@ -51,7 +51,7 @@ const chartsSchema = new mongoose.Schema({
 const Placard = mongoose.model('placards', placardSchema);
 const ChartData = mongoose.model('charts', chartsSchema);
 
-app.get('/api/placards', async (req, res) => {
+app.get('/api/placards', jwtMW, async (req, res) => {
     try {
         const placards = await Placard.find();
         res.json(placards);
@@ -60,7 +60,7 @@ app.get('/api/placards', async (req, res) => {
     }
 });
 
-app.get('/api/charts', async (req, res) => {
+app.get('/api/charts', jwtMW, async (req, res) => {
     try {
         const charts = await ChartData.find();
         res.json(charts);
@@ -82,14 +82,6 @@ app.post('/api/login', (req, res) => {
     } else {
         res.status(401).json({success: false, token: null, err: "Invalid username or password"});
     }
-});
-
-app.get('/api/dashboard', jwtMW, (req, res) => {
-    res.json({success: true, myContent: 'Secret Content only for logged-in users!'});
-});
-
-app.get('/api/summary', jwtMW, (req, res) => {
-    res.json({success: true, myContent: 'Summary data accessible to authenticated users only!'});
 });
 
 app.use((err, req, res, next) => {
